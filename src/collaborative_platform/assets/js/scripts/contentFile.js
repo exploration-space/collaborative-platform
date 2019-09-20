@@ -32,6 +32,7 @@ function contentFile(id) {
             $('[js-contentFileDownload]').attr('js-contentFileDownload', id);
             $('[js-contentFileRevisions]').attr('js-contentFileRevisions', id);
             $('[js-contentFileCloseReading]').attr('js-contentFileCloseReading', id);
+            $('[js-contentNER]').attr('js-contentNER', id);
             
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -100,3 +101,10 @@ $(document).on('click', '[js-contentFileCloseReading]', function(e) {
     window.location = "/close_reading/project/" + projectId + "/file/" + id + "/"
 })
 
+$(document).on('click', '[js-contentNER]', function(e) {
+    e.preventDefault()
+    var id = $(this).attr('js-contentNER')
+    var projectId = $('#filep').attr('data-project-id')
+
+    window.location = "/entity_recognition/project/" + projectId + "/file/" + id + "/"
+})
