@@ -46,3 +46,11 @@ django-autocomplete-light==3.4.1
 
 # For files deletion
 django-cleanup==4.0.0
+
+# For Jupyter notebooks
+notebook==6.0.1
+jupyter==1.0.0
+jupyter-client==5.3.3
+jupyter-console==6.0.0
+jupyter-core==4.5.0
+django-extensions==2.2.1
