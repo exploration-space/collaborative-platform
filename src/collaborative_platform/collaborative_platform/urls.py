@@ -26,7 +26,7 @@ urlpatterns = [
     path('close_reading/', include('apps.close_reading.urls')),
     path('api/search/', include('apps.index_and_search.urls_api')),
     path('social_auth/', include('social_django.urls', namespace='social')),
-    path('api/vis/', include('apps.api_vis.urls')),
+    path('api/vis/', include('apps.api_vis.urls_api')),
     path('entity_recognition/', include('apps.entity_recognition.urls')),
     path('api/entity_recognition/', include('apps.entity_recognition.urls_api')),
     path('', include('apps.core.urls')),
