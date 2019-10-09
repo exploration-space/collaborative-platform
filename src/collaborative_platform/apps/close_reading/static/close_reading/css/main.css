@@ -10,6 +10,18 @@ button span{
     margin-top: 265px;
 }
 
+#doc-name{
+    background-color: #f7f7f7;
+    display: contents;
+}
+
+#fileTitleEditable{
+    width: 550px;
+    display: inline-block;
+    overflow-wrap: normal;
+    overflow: hidden;
+}
+
 #annotator-root{max-width: 23.7cm;}
 #versionLink:first-of-type{font-size: 0.7em;}
 .break-word {
@@ -34,6 +46,7 @@ page {
     z-index: 200;
     transition: opacity 1s;
     transition-timing-function: ease;
+    pointer-events: none;
 }
 
 #alert.hide{opacity: 0;}

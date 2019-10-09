@@ -44,10 +44,13 @@
         <section id="toolbar">
           <div id="alert" class="hide" role="alert"></div>
           <div class="card card-body">
-          <h2 class="break-word">
+          <h2 class="break-word" title="{{ file.name }}">
 {#             Split file name into two parts: with and without extension#}
-            <span>
-              <span id="fileTitleEditable">{{ file.name }}</span>
+            <span id="doc-name">
+              <span 
+                  title="{{ file.name }}"
+                  style="width: 550px;height: 100%;box-shadow: inset -41px 1px 16px 0px #f7f7f7;position: absolute;background-color: transparent;"></span>
+              <span id="fileTitleEditable" title="{{ file.name }}">{{ file.name }}</span>
               <a id='versionLink'  class='scripted'>Version: {{ file.version_number }}</a>
 {#              % if file_revision:#}
 {#                <small>&nbsp;${file_revision | h}</small>#}
