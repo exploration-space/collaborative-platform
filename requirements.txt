@@ -56,5 +56,5 @@ jupyter-core==4.5.0
 django-extensions==2.2.1
 
 # For NLP
-#spacy==2.1.8   # Uncomment for entity recognition (big installation size)
+spacy==2.1.8   # Uncomment for entity recognition (big installation size)
 #en-core-web-md==2.1.0  # Uncommenty for entity recognition (big installation size)
