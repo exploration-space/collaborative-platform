@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+{% block head %}
+{% endblock %}
+
+{% block submenu %}
+<ul class="submenu__list">
+  <li class="submenu__item">
+    <a href="{% url 'projects:project' project_id %}" class="submenu__link">{{ title }}</a>
+  </li>
+  <li class="submenu__item">
+    <a href="{% url 'projects:files' project_id %}" class="submenu__link">Files</a>
+  </li>
+  <li class="submenu__item submenu__item--active">
+    <a href="{% url 'overview:main' project_id %}" class="submenu__link">Overview</a>
+  </li>
+  <li class="submenu__item">
+    <a href="{% url 'projects:project_settings' project_id %}" class="submenu__link">Settings</a>
+  </li>
+</ul>
+{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+<div class="submenu">
+  <div class="container">
+    <ul class="submenu__list d-flex">
+      <li class="submenu__item">
+        <a href="{% url 'projects:project' project_id %}" class="submenu__link">{{ title }}</a>
+      </li>
+      <li class="submenu__item">
+        <a href="{% url 'projects:files' project_id %}" class="submenu__link">Files</a>
+      </li>
+      <li class="submenu__item submenu__item--active">
+	    <a href="{% url 'overview:main' project_id %}" class="submenu__link">Overview</a>
+	  </li>
+      <li class="submenu__item">
+        <a href="{% url 'projects:project_settings' project_id %}" class="submenu__link">Settings</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-transparent">
+      <a href="{% url 'projects:project' project_id %}" class="breadcrumb-item">{{ title }}</a>
+      <li class="breadcrumb-item active" aria-current="page">Overview</li>
+    </ol>
+  </nav>
+</div>
+
+<h1>{{ title }} overview</h1>
+
+<script type="text/javascript">
+window.onload = function() {
+var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+    }
+});
+}
+</script>
+{% endblock %}

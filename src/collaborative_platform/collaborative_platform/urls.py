@@ -29,5 +29,6 @@ urlpatterns = [
     path('api/vis/', include('apps.api_vis.urls_api')),
     path('entity_recognition/', include('apps.entity_recognition.urls')),
     path('api/entity_recognition/', include('apps.entity_recognition.urls_api')),
+    path('overview/', include('apps.overview.urls')),
     path('', include('apps.core.urls')),
 ]

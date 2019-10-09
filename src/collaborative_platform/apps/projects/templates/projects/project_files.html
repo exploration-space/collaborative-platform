@@ -13,6 +13,9 @@
     <a href="{% url 'projects:files' project.id %}" class="submenu__link">Files</a>
   </li>
   <li class="submenu__item">
+    <a href="{% url 'overview:main' project.id %}" class="submenu__link">Overview</a>
+  </li>
+  <li class="submenu__item">
     <a href="{% url 'projects:project_settings' project.id %}" class="submenu__link">Settings</a>
   </li>
 </ul>
@@ -28,6 +31,9 @@
       </li>
       <li class="submenu__item submenu__item--active">
         <a href="{% url 'projects:files' project.id %}" class="submenu__link">Files</a>
+      </li>
+      <li class="submenu__item">
+        <a href="{% url 'overview:main' project.id %}" class="submenu__link">Overview</a>
       </li>
       <li class="submenu__item">
         <a href="{% url 'projects:project_settings' project.id %}" class="submenu__link">Settings</a>
