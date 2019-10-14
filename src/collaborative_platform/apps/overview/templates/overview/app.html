@@ -51,6 +51,7 @@
 </div>
 
 <h1>{{ title }} overview</h1>
+<div id="react-root"></div>
 
 <script type="text/javascript">
 window.onload = function() {
@@ -62,4 +63,10 @@ $.ajaxSetup({
 });
 }
 </script>
+{% if DEVELOPMENT is True %}
+  <script type="text/javascript" src="http://localhost:3000/main.js"></script>
+{% else %}
+  <script type="text/javascript" src="{% static 'overview/js/main.js' %}"></script>
+  <script type="text/javascript" src="{% static 'overview/js/main.js.map' %}"></script>
+{% endif %}
 {% endblock %}

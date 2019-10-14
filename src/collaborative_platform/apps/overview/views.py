@@ -10,5 +10,9 @@ from apps.projects.models import Project
 @user_has_access()
 def main(request, project_id=1):  # type: (HttpRequest, int, int) -> HttpResponse
     project = Project.objects.get(pk=project_id)
-    content = {'title':project.title, 'project_id':project_id}
+    content = {
+    	'title':project.title, 
+    	'project_id':project_id,
+    	'DEVELOPMENT':True
+    }
     return render(request, 'overview/app.html', content)
