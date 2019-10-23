@@ -18,7 +18,7 @@ from apps.files_management.models import File, FileVersion, Project, Directory
 import apps.index_and_search.models as es
 
 
-def upload_new_file(uploaded_file, project, parent_dir, user):  # type: (UploadedFile, Project, int, User) -> File
+def upload_new_file(uploaded_file, project, parent_dir, user, creation_date=timezone.now()):  # type: (UploadedFile, Project, int, User) -> File
     # I assume that the project exists, bc few level above we checked if user has permissions to write to it.
 
     dbfile = File(name=uploaded_file.name, parent_dir_id=parent_dir, project=project, version_number=1)
@@ -27,7 +27,7 @@ def upload_new_file(uploaded_file, project, parent_dir, user):  # type: (Uploade
     try:
         hash = hash_file(dbfile, uploaded_file)
         uploaded_file.name = hash
-        file_version = FileVersion(upload=uploaded_file, number=1, hash=hash, file=dbfile, created_by=user)
+        file_version = FileVersion(upload=uploaded_file, number=1, hash=hash, file=dbfile, created_by=user, creation_date=creation_date)
         file_version.save()
     except Exception as e:
         dbfile.delete()
@@ -37,7 +37,7 @@ def upload_new_file(uploaded_file, project, parent_dir, user):  # type: (Uploade
         return dbfile
 
 
-def overwrite_existing_file(dbfile, uploaded_file, user):  # type: (File, UploadedFile, User) -> File
+def overwrite_existing_file(dbfile, uploaded_file, user, creation_date=timezone.now()):  # type: (File, UploadedFile, User) -> File
     hash = hash_file(dbfile, uploaded_file)
     latest_file_version = dbfile.versions.filter(number=dbfile.version_number).get()  # type: FileVersion
     if latest_file_version.hash == hash:
@@ -46,7 +46,7 @@ def overwrite_existing_file(dbfile, uploaded_file, user):  # type: (File, Upload
     uploaded_file.name = hash
     new_version_number = latest_file_version.number + 1
     new_file_version = FileVersion(upload=uploaded_file, number=new_version_number, hash=hash, file=dbfile,
-                                   created_by=user, creation_date=timezone.now())
+                                   created_by=user, creation_date=creation_date)
     new_file_version.save()
 
     dbfile.version_number = new_version_number

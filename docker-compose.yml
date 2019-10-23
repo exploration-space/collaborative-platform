@@ -37,6 +37,7 @@ services:
       - .:/code
     ports:
       - 8000:8000
+      - 8888:8888
       - 3000:3000
     depends_on:
       - postgres

@@ -135,7 +135,7 @@ class FileVersion(models.Model):
     hash = models.CharField(max_length=128)
     file = models.ForeignKey(File, related_name='versions', on_delete=models.CASCADE)
     number = models.PositiveIntegerField()
-    creation_date = models.DateTimeField(auto_now_add=True)
+    creation_date = models.DateTimeField(auto_now_add=False)
     created_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='created_fileversions', null=True,
                                    blank=True)
 

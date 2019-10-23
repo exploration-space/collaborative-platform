@@ -1,6 +1,9 @@
 import React from 'react';
 import * as d3 from 'd3';
 
+import log from '../annotation-log.json';
+console.log(log[0]);
+
 class App extends React.Component {
     constructor(props){
         super(props);

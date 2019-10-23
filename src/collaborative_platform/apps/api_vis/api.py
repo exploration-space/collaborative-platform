@@ -19,7 +19,7 @@ NAMESPACES = {
 }
 
 ANNOTATION_TAGS = ['date', 'event', 'location', 'geolocation', 'name', 'occupation', 'object', 'org', 'person', 'place',
-                   'country', 'time']
+                   'country', 'time', 'span']
 
 
 @login_required
