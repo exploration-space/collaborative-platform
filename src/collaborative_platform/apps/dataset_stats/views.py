@@ -30,7 +30,7 @@ def main(request, project_id=1):  # type: (HttpRequest, int, int) -> HttpRespons
     		]
     	},
     	{
-    		"name": 'place"Name"',
+    		"name": 'placeName',
     		"count": 190,
     		"coverage": 30,
     		"attributes": []
@@ -81,7 +81,7 @@ def main(request, project_id=1):  # type: (HttpRequest, int, int) -> HttpRespons
     				"coverage": 100,
     				"values": [
     					['person', 40],
-    					['place"Name"', 5],
+    					['placeName', 5],
     					['date', 20],
     					['location', 20],
     					['age', 15]
@@ -105,5 +105,6 @@ def main(request, project_id=1):  # type: (HttpRequest, int, int) -> HttpRespons
     	'project_id':project_id,
     	'DEVELOPMENT':True,
     	'tags': tags,
+    	'document_count': 200,
     }
     return render(request, 'dataset_stats/app.html', content)
