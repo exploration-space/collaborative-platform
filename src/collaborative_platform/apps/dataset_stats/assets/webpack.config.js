@@ -1,6 +1,6 @@
 const path = require('path');
 
-const outputDirectory = '../static/overview/js'
+const outputDirectory = '../static/dataset_stats/js'
 
 
 module.exports = {

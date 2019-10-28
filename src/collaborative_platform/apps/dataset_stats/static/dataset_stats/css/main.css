@@ -1,0 +1,127 @@
+#dataset-stats{
+  margin-top: 5em;
+}
+
+#dataset-stats h4{
+  color: var(--primary);
+}
+
+.sections{
+  min-height: 100%;
+}
+
+.entitySummary{
+  padding-top: .6em;
+  height: 5.4em;
+  display: flex;
+  border-radius: .5%;
+  padding-left: 5px;
+  padding-right: 5px;
+  cursor: pointer;
+}
+
+.entitySummary .block{
+  display: block; 
+  width: max-content;
+}
+
+.entitySummary .block.tag:nth-of-type(1) > b{
+  display: block; 
+  width: max-content;
+}
+
+.entitySummary .block:nth-of-type(2){
+  padding-top: .8em;
+  margin: 0 1em 0 1em;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.entitySummary .block.tag{
+  padding-top: .5em;
+}
+
+.entitySummary .attributeList{
+  width: max-content;
+  overflow-y: visible;
+}
+
+.entitySummary span{
+  height: 1em;
+}
+.attributeSummary{
+  padding: 0 5px;
+}
+.attributeStats{
+  hegiht: 3.4em;
+  display:inline-flex;
+  flex-direction: column;
+  position: relative;
+  top:-.9em;
+  border: solid 1px var(--primary);
+  padding:0 .5em .5em .5em;
+}
+.attributeStats span{
+  font-size: .8em;
+  margin: 1px 0;
+}
+.attributeStats span.big{
+  font-size: 1.2em;
+}
+
+.entitySummary b{
+  position: relative;
+  top: 0.4em;
+}
+
+.entitySummary b.big{
+  font-size: 1.3em;
+  position: relative;
+  top: 0.2em;
+}
+
+.entitySummary:hover{
+  background-color: white;
+}
+
+.entity.expanded .entitySummary:hover{
+  background-color: white;
+}
+
+.entity.expanded .entitySummary .block:nth-of-type(2){
+  display: none;
+}
+
+.entity{
+  border: none;
+}
+
+.entity.expanded{
+  border: solid 1px lightgrey;
+}
+
+.onExpanded{
+  display: none;
+}
+
+.entity.expanded .onExpanded{
+  display: initial;
+}
+
+.list-group-item.onExanded{
+  background-color: white;
+}
+
+.entity > li{
+  list-style: none;
+}
+
+.entitySummary:hover .close{
+  color: red;
+}
+
+.close{
+  position: absolute;
+  top: 1.7em;
+  right: 2em;
+}

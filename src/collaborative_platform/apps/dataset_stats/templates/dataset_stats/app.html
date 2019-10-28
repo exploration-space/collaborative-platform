@@ -2,6 +2,7 @@
 {%  load static %}
 
 {% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'dataset_stats/css/main.css' %}">
 {% endblock %}
 
 {% block submenu %}
@@ -56,7 +57,399 @@
   </nav>
 </div>
 
-<h1>{{ title }} overview</h1>
+  <div id="dataset-stats" class="container">
+    <ul class="list-group-flush">
+      <li class="list-group-item">
+        <ul class="list-group entity rounded">
+          <li class="">
+            <div class="entitySummary">
+              <div class="block tag">
+                <b class="big"><div class="badge badge-primary badge-pill">4 
+                  <span class="onExpanded">tags found in the dataset</span>
+                  </div> &lt;person</b>
+              </div>
+              <div class="block">
+                <div class="attributeList">
+                  <span class="attributeSummary">
+                    <b>role=</b>
+                    <div class="attributeStats rounded">
+                      <span>3 distinct values</span>
+                      <span class="big">95% with value 'deponent'</span>
+                      <span class="">100% tags have it</span>
+                    </div>
+                  </span>
+                  <span class="attributeSummary">
+                    <b>age=</b>
+                    <div class="attributeStats rounded">
+                      <span>15 distinct values</span>
+                      <span class="big">65% with value '31'</span>
+                      <span class="">15% tags have it</span>
+                    </div>
+                  </span>
+                  <span class="attributeSummary">
+                    <b>gender=</b>
+                    <div class="attributeStats rounded">
+                      <span>5 distinct values</span>
+                      <span class="big">75% with value '1'</span>
+                      <span class="">35% have it</span>
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div class="block tag">
+                <b class="big">&gt;&lt;/person&gt;</b>
+                <button type="button" class="close onExpanded" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item onExpanded bg-secondary">
+            <div class="d-flex flex-row">
+              <div class="d-block">
+                <p>
+                  <b class="big">3 / 5 documents have this tag</b><br/>
+                  There is a total of 5 distinct attributes <br/>for this tag in the dataset <br/>
+                  100% of tags have it<br/>
+                </p>
+              </div>
+              <div id="chartContainer" class="d-block pl-5">
+                <p>
+                  <b>Bar chart with the number of occurences of this tag in a document</b>
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item onExpanded">
+            <h4>role</h4>
+            <div class="d-flex flex-row">
+              <div class="d-block">
+                <p>
+                  3 distinct values <br/>
+                  95% with value 'deponent' <br/>
+                  100% of tags have it<br/>
+                </p>
+              </div>
+              <div id="chartContainer" class="d-block pl-5">
+                <p>
+                  <b>Bar chart with the number of occurences of each value</b>
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item onExpanded">
+            <h4>age</h4>
+            <div class="d-flex flex-row">
+              <div class="d-block">
+                <p>
+                  15 distinct values <br/>
+                  65% with value 'deponent' <br/>
+                  15% of tags have it<br/>
+                </p>
+              </div>
+              <div id="chartContainer" class="d-block pl-5">
+                <p>
+                  <b>Bar chart with the number of occurences of each value</b>
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item onExpanded">
+            <h4>gender</h4>
+            <div class="d-flex flex-row">
+              <div class="d-block">
+                <p>
+                  5 distinct values <br/>
+                  75% with value 'deponent' <br/>
+                  35% of tags have it<br/>
+                </p>
+              </div>
+              <div id="chartContainer" class="d-block pl-5">
+                <p>
+                  <b>Bar chart with the number of occurences of each value</b>
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </li>
+          <li class="list-group-item">
+        <ul class="list-group entity rounded">
+          <li class="">
+            <div class="entitySummary">
+              <div class="block tag">
+                <b class="big"><div class="badge badge-primary badge-pill">4 
+                  <span class="onExpanded">tags found in the dataset</span>
+                  </div> &lt;placeName</b>
+              </div>
+              <div class="block">
+                <div class="attributeList">
+                  <span class="attributeSummary">
+                    <div class="attributeStats rounded">
+                      <span></span>
+                      <span class="big">There are no tags with attributes in this collection</span>
+                      <span></span>
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div class="block tag">
+                <b class="big">&gt;&lt;/placeName&gt;</b>
+                <button type="button" class="close onExpanded" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item onExpanded bg-secondary">
+            <div class="d-flex flex-row">
+              <div class="d-block">
+                <p>
+                  <b class="big">3 / 5 documents have this tag</b><br/>
+                  There is a total of 5 distinct attributes <br/>for this tag in the dataset <br/>
+                  100% of tags have it<br/>
+                </p>
+              </div>
+              <div id="chartContainer" class="d-block pl-5">
+                <p>
+                  <b>Bar chart with the number of occurences of this tag in a document</b>
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li class="list-group-item">
+        <ul class="list-group entity rounded">
+          <li class="">
+            <div class="entitySummary">
+              <div class="block tag">
+                <b class="big"><div class="badge badge-primary badge-pill">4 
+                  <span class="onExpanded">tags found in the dataset</span>
+                  </div> &lt;certainty</b>
+              </div>
+              <div class="block">
+                <div class="attributeList">
+                  <span class="attributeSummary">
+                    <b>locus=</b>
+                    <div class="attributeStats rounded">
+                      <span>3 distinct values</span>
+                      <span class="big">95% with value 'deponent'</span>
+                      <span class="">100% tags have it</span>
+                    </div>
+                  </span>
+                  <span class="attributeSummary">
+                    <b>assertedValue=</b>
+                    <div class="attributeStats rounded">
+                      <span>3 distinct values</span>
+                      <span class="big">95% with value 'deponent'</span>
+                      <span class="">100% tags have it</span>
+                    </div>
+                  </span>
+                  <span class="attributeSummary">
+                    <b>cert=</b>
+                    <div class="attributeStats rounded">
+                      <span>3 distinct values</span>
+                      <span class="big">95% with value 'deponent'</span>
+                      <span class="">100% tags have it</span>
+                    </div>
+                  </span>
+                  <span class="attributeSummary">
+                    <b>type=</b>
+                    <div class="attributeStats rounded">
+                      <span>3 distinct values</span>
+                      <span class="big">95% with value 'deponent'</span>
+                      <span class="">100% tags have it</span>
+                    </div>
+                  </span>
+                  <span class="attributeSummary">
+                    <b>tag=</b>
+                    <div class="attributeStats rounded">
+                      <span>3 distinct values</span>
+                      <span class="big">95% with value 'deponent'</span>
+                      <span class="">100% tags have it</span>
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div class="block tag">
+                <b class="big">&gt;&lt;/certainty&gt;</b>
+                <button type="button" class="close onExpanded" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item onExpanded bg-secondary">
+            <div class="d-flex flex-row">
+              <div class="d-block">
+                <p>
+                  <b class="big">3 / 5 documents have this tag</b><br/>
+                  There is a total of 5 distinct attributes <br/>for this tag in the dataset <br/>
+                  100% of tags have it<br/>
+                </p>
+              </div>
+              <div id="chartContainer" class="d-block pl-5">
+                <p>
+                  <b>Bar chart with the number of occurences of this tag in a document</b>
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item onExpanded">
+            <h4>locus</h4>
+            <div class="d-flex flex-row">
+              <div class="d-block">
+                <p>
+                  3 distinct values <br/>
+                  95% with value 'deponent' <br/>
+                  100% of tags have it<br/>
+                </p>
+              </div>
+              <div id="chartContainer" class="d-block pl-5">
+                <p>
+                  <b>Bar chart with the number of occurences of each value</b>
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item onExpanded">
+            <h4>assertedValue</h4>
+            <div class="d-flex flex-row">
+              <div class="d-block">
+                <p>
+                  15 distinct values <br/>
+                  65% with value 'deponent' <br/>
+                  15% of tags have it<br/>
+                </p>
+              </div>
+              <div id="chartContainer" class="d-block pl-5">
+                <p>
+                  <b>Bar chart with the number of occurences of each value</b>
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item onExpanded">
+            <h4>cert</h4>
+            <div class="d-flex flex-row">
+              <div class="d-block">
+                <p>
+                  5 distinct values <br/>
+                  75% with value 'deponent' <br/>
+                  35% of tags have it<br/>
+                </p>
+              </div>
+              <div id="chartContainer" class="d-block pl-5">
+                <p>
+                  <b>Bar chart with the number of occurences of each value</b>
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item onExpanded">
+            <h4>type</h4>
+            <div class="d-flex flex-row">
+              <div class="d-block">
+                <p>
+                  5 distinct values <br/>
+                  75% with value 'deponent' <br/>
+                  35% of tags have it<br/>
+                </p>
+              </div>
+              <div id="chartContainer" class="d-block pl-5">
+                <p>
+                  <b>Bar chart with the number of occurences of each value</b>
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item onExpanded">
+            <h4>tag</h4>
+            <div class="d-flex flex-row">
+              <div class="d-block">
+                <p>
+                  5 distinct values <br/>
+                  75% with value 'deponent' <br/>
+                  35% of tags have it<br/>
+                </p>
+              </div>
+              <div id="chartContainer" class="d-block pl-5">
+                <p>
+                  <b>Bar chart with the number of occurences of each value</b>
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li class="list-group-item">
+        <ul class="list-group entity rounded">
+          <li class="">
+            <div class="entitySummary">
+              <div class="block tag">
+                <b class="big"><div class="badge badge-primary badge-pill">40 
+                  <span class="onExpanded">tags found in the dataset</span>
+                  </div> &lt;date</b>
+              </div>
+              <div class="block">
+                <div class="attributeList">
+                  <span class="attributeSummary">
+                    <b>when=</b>
+                    <div class="attributeStats rounded">
+                      <span>33 distinct values</span>
+                      <span class="big">95% with value '1642'</span>
+                      <span class="">100% tags have it</span>
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div class="block tag">
+                <b class="big">&gt;&lt;/date&gt;</b>
+                <button type="button" class="close onExpanded" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item onExpanded bg-secondary">
+            <div class="d-flex flex-row">
+              <div class="d-block">
+                <p>
+                  <b class="big">100 / 100 documents have this tag</b><br/>
+                  There is a total of 1 distinct attributes <br/>for this tag in the dataset <br/>
+                  100% of tags have it<br/>
+                </p>
+              </div>
+              <div id="chartContainer" class="d-block pl-5">
+                <p>
+                  <b>Bar chart with the number of occurences of this tag in a document</b>
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item onExpanded">
+            <h4>when</h4>
+            <div class="d-flex flex-row">
+              <div class="d-block">
+                <p>
+                  33 distinct values <br/>
+                  95% with value '1642' <br/>
+                  100% of tags have it<br/>
+                </p>
+              </div>
+              <div id="chartContainer" class="d-block pl-5">
+                <p>
+                  <b>Bar chart with the number of occurences of each value</b>
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
 <div id="react-root"></div>
 
 <script type="text/javascript">
@@ -72,7 +465,7 @@ $.ajaxSetup({
 {% if DEVELOPMENT is True %}
   <script type="text/javascript" src="http://localhost:3000/main.js"></script>
 {% else %}
-  <script type="text/javascript" src="{% static 'overview/js/main.js' %}"></script>
-  <script type="text/javascript" src="{% static 'overview/js/main.js.map' %}"></script>
+  <script type="text/javascript" src="{% static 'dataset_stats/js/main.js' %}"></script>
+  <script type="text/javascript" src="{% static 'dataset_stats/js/main.js.map' %}"></script>
 {% endif %}
 {% endblock %}
