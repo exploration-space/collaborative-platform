@@ -123,20 +123,20 @@
                   </li>
                   {% for attr in tag.attributes %}
                     <li class="list-group-item onExpanded">
-                      <h4>{{ attr.name }}</h4>
                       <div class="d-flex flex-row">
                         <div class="d-block">
+                          <h4>{{ attr.name }}</h4>
                           <p>
                             {{ attr.values|length }} distinct values <br/>
                             {{ attr.top_perc }}% with value '{{ attr.top_value }}' <br/>
                             {{ attr.coverage }}% tags have it<br/>
                           </p>
                         </div>
-                        <div id="chartContainer" class="d-block pl-5">
-                          <p>
-                            <b values="{{ attr.values }}">Bar chart with the number of occurences of each value</b>
-                          </p>
-                        </div>
+                          <canvas 
+                              id="{{ tag.name }}-{{ attr.name }}" 
+                              data="{{ attr.values }}" 
+                              class="chartContainer pl-5" 
+                              width=400>
                       </div>
                     </li>
                   {% endfor %}
