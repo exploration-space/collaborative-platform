@@ -12,8 +12,11 @@
   <li class="submenu__item">
     <a href="{% url 'projects:files' project_id %}" class="submenu__link">Files</a>
   </li>
-  <li class="submenu__item submenu__item--active">
+  <li class="submenu__item">
     <a href="{% url 'overview:main' project_id %}" class="submenu__link">Overview</a>
+  </li>
+  <li class="submenu__item submenu__item--active">
+    <a href="{% url 'dataset_stats:main' project_id %}" class="submenu__link">Stas</a>
   </li>
   <li class="submenu__item">
     <a href="{% url 'projects:project_settings' project_id %}" class="submenu__link">Settings</a>
@@ -32,9 +35,12 @@
       <li class="submenu__item">
         <a href="{% url 'projects:files' project_id %}" class="submenu__link">Files</a>
       </li>
+      <li class="submenu__item">
+        <a href="{% url 'overview:main' project_id %}" class="submenu__link">Overview</a>
+      </li>
       <li class="submenu__item submenu__item--active">
-	    <a href="{% url 'overview:main' project_id %}" class="submenu__link">Overview</a>
-	  </li>
+        <a href="{% url 'dataset_stats:main' project_id %}" class="submenu__link">Stats</a>
+      </li>
       <li class="submenu__item">
         <a href="{% url 'projects:project_settings' project_id %}" class="submenu__link">Settings</a>
       </li>
@@ -45,7 +51,7 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent">
       <a href="{% url 'projects:project' project_id %}" class="breadcrumb-item">{{ title }}</a>
-      <li class="breadcrumb-item active" aria-current="page">Overview</li>
+      <li class="breadcrumb-item active" aria-current="page">Stats</li>
     </ol>
   </nav>
 </div>
