@@ -62,86 +62,88 @@
           <h3 class="box__text--title">Entity and attribute coverage of the dataset</h3>
         </div>
         <div class="box__content">
-          {% for tag in tags %}
           <ul class="list-group-flush">
-            <li class="list-group-item">
-              <ul class="list-group entity rounded">
-                <li class="">
-                  <div class="entitySummary">
-                    <div class="block tag">
-                      <b class="big"><div class="badge badge-primary badge-pill">{{ tag.count }} 
-                        <span class="onExpanded">tags found in the dataset</span>
-                        </div> &lt;certainty</b>
-                    </div>
-                    <div class="block">
-                      <div class="attributeList">
-                        {% if tag.attributes|length == 0 %}
-                          <span class="attributeSummary">
-                            <div class="attributeStats rounded">
-                              <span></span>
-                              <span class="big">There are no tags with attributes in this collection</span>
-                              <span></span>
-                            </div>
-                          </span>
-                        {% else %}
-                          {% for attr in tag.attributes %} 
+            {% for tag in tags %}
+              <li class="list-group-item">
+                <ul class="list-group entity rounded">
+                  <li class="">
+                    <div class="entitySummary">
+                      <div class="block tag">
+                        <b class="big"><div class="badge badge-primary badge-pill">{{ tag.count }} 
+                          <span class="onExpanded">tags found in the dataset</span>
+                          </div> &lt;certainty</b>
+                      </div>
+                      <div class="block">
+                        <div class="attributeList">
+                          {% if tag.attributes|length == 0 %}
                             <span class="attributeSummary">
-                              <b>{{ attr.name }}=</b>
                               <div class="attributeStats rounded">
-                                <span>{{ attr.values|length }} distinct values</span>
-                                <span class="big">{{ attr.top_perc }}% with value '{{ attr.top_value }}'</span>
-                                <span class="">{{ attr.coverage }}% tags have it</span>
+                                <span></span>
+                                <span class="big">There are no tags with attributes in this collection</span>
+                                <span></span>
                               </div>
                             </span>
-                          {% endfor %}
-                        {% endif %}
+                          {% else %}
+                            {% for attr in tag.attributes %} 
+                              <span class="attributeSummary">
+                                <b>{{ attr.name }}=</b>
+                                <div class="attributeStats rounded">
+                                  <span>{{ attr.values|length }} distinct values</span>
+                                  <span class="big">{{ attr.top_perc }}% with value '{{ attr.top_value }}'</span>
+                                  <span class="">{{ attr.coverage }}% tags have it</span>
+                                </div>
+                              </span>
+                            {% endfor %}
+                          {% endif %}
+                        </div>
+                      </div>
+                      <div class="block tag">
+                        <b class="big">&gt;&lt;/certainty&gt;</b>
+                        <button type="button" class="close onExpanded" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
                       </div>
                     </div>
-                    <div class="block tag">
-                      <b class="big">&gt;&lt;/certainty&gt;</b>
-                      <button type="button" class="close onExpanded" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                  </li>
+                  <li class="list-group-item onExpanded bg-secondary">
+                    <div class="d-flex flex-row">
+                      <div class="d-block">
+                        <p>
+                          <b class="big">{{ tag.count }} out of {{ document_count }} documents have this tag</b><br/>
+                          There is a total of {{ tag.attributes|length }} distinct attributes <br/>for this tag in the dataset <br/>
+                          <br/>
+                        </p>
+                      </div>
+                      <div id="chartContainer" class="d-block pl-5">
+                        <p>
+                          <b>Bar chart with the number of occurences of this tag in a document</b>
+                        </p>
+                      </div>
                     </div>
-                  </div>
+                  </li>
+                  {% for attr in tag.attributes %}
+                    <li class="list-group-item onExpanded">
+                      <h4>{{ attr.name }}</h4>
+                      <div class="d-flex flex-row">
+                        <div class="d-block">
+                          <p>
+                            {{ attr.values|length }} distinct values <br/>
+                            {{ attr.top_perc }}% with value '{{ attr.top_value }}' <br/>
+                            {{ attr.coverage }}% tags have it<br/>
+                          </p>
+                        </div>
+                        <div id="chartContainer" class="d-block pl-5">
+                          <p>
+                            <b values="{{ attr.values }}">Bar chart with the number of occurences of each value</b>
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                  {% endfor %}
+                </ul>
                 </li>
-                <li class="list-group-item onExpanded bg-secondary">
-                  <div class="d-flex flex-row">
-                    <div class="d-block">
-                      <p>
-                        <b class="big">3 / 5 documents have this tag</b><br/>
-                        There is a total of 5 distinct attributes <br/>for this tag in the dataset <br/>
-                        100% of tags have it<br/>
-                      </p>
-                    </div>
-                    <div id="chartContainer" class="d-block pl-5">
-                      <p>
-                        <b>Bar chart with the number of occurences of this tag in a document</b>
-                      </p>
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item onExpanded">
-                  <h4>locus</h4>
-                  <div class="d-flex flex-row">
-                    <div class="d-block">
-                      <p>
-                        3 distinct values <br/>
-                        95% with value 'deponent' <br/>
-                        100% of tags have it<br/>
-                      </p>
-                    </div>
-                    <div id="chartContainer" class="d-block pl-5">
-                      <p>
-                        <b>Bar chart with the number of occurences of each value</b>
-                      </p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              </li>
+            {% endfor %}
           </ul>
-          {% endfor %}
         </div>
       </div>
     </div>
