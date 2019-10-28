@@ -30,5 +30,6 @@ urlpatterns = [
     path('entity_recognition/', include('apps.entity_recognition.urls')),
     path('api/entity_recognition/', include('apps.entity_recognition.urls_api')),
     path('overview/', include('apps.overview.urls')),
+    path('stats/', include('apps.dataset_stats.urls')),
     path('', include('apps.core.urls')),
 ]
