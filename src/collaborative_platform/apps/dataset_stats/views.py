@@ -15,4 +15,4 @@ def main(request, project_id=1):  # type: (HttpRequest, int, int) -> HttpRespons
     	'project_id':project_id,
     	'DEVELOPMENT':True
     }
-    return render(request, 'overview/app.html', content)
+    return render(request, 'dataset_stats/app.html', content)
