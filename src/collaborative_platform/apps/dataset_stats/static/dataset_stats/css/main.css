@@ -112,6 +112,10 @@
   background-color: white;
 }
 
+.box__content > ul{
+  padding-right: 40px;
+}
+
 .entity > li{
   list-style: none;
 }
