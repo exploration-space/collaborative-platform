@@ -6,6 +6,62 @@ from tqdm import tqdm
 
 NAMESPACES = {'tei': 'http://www.tei-c.org/ns/1.0', 'xml': 'http://www.w3.org/XML/1998/namespace'}
 
+def create_fast_stats_for_document_collection(doc_gen: Iterable[str])->pd.DataFrame: 
+    stats_df = pd.DataFrame(columns=['body', 'header', 'count', 'attr_count'])
+
+    for doc, doc_name in tqdm(doc_gen):
+        doc_tree = et.fromstring(doc.encode())
+
+        header_tags = doc_tree.find('.//tei:teiHeader', namespaces=NAMESPACES).iter()
+        body_tags = doc_tree.find('.//tei:body', namespaces=NAMESPACES).iter()
+        
+
+        for tag in header_tags:
+            try:
+                tag_name = tag.tag.split('}')[1] if '}' in tag.tag else tag.tag
+                if not tag_name in stats_df.index:
+                    stats_df.loc[tag_name] = {
+                        'body': 0,
+                        'header': 1,
+                        'count': 1,
+                        'attr_count': len(tag.keys()),
+                    }
+                else:
+                    stats_df.loc[tag_name] = {
+                        'body': stats_df.loc[tag_name, 'body'],
+                        'header': stats_df.loc[tag_name, 'header'] + 1,
+                        'count': stats_df.loc[tag_name, 'count'] + 1,
+                        'attr_count': stats_df.loc[tag_name, 'attr_count'] + len(tag.keys()),
+                    }
+            except Exception:
+                pass
+
+        for tag in body_tags:
+            try:
+                tag_name = tag.tag.split('}')[1] if '}' in tag.tag else tag.tag
+                if not tag_name in stats_df.index:
+                    stats_df.loc[tag_name] = {
+                        'body': 1,
+                        'header': 0,
+                        'count': 1,
+                        'attr_count': len(tag.keys()),
+                    }
+                else:
+                    stats_df.loc[tag_name] = {
+                        'body': stats_df.loc[tag_name, 'body'] + 1,
+                        'header': stats_df.loc[tag_name, 'header'],
+                        'count': stats_df.loc[tag_name, 'count'] + 1,
+                        'attr_count': stats_df.loc[tag_name, 'attr_count'] + len(tag.keys()),
+                    }
+            except Exception:
+                pass
+    
+    most_common = stats_df.sort_values('count', ascending=False).iloc[:4] 
+    most_common['tag'] = most_common.index
+    most_common['attr_count'] = most_common['attr_count'] / most_common['count']
+
+    return most_common.to_dict(orient='records')
+
 def create_summary_for_document(doc_raw: str, doc_name:str='undefined')->pd.DataFrame: 
     doc_tree = et.fromstring(doc_raw.encode())
 
