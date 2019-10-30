@@ -71,7 +71,7 @@
                       <div class="block tag">
                         <b class="big"><div class="badge badge-primary badge-pill">{{ tag.count }} 
                           <span class="onExpanded">tags found in the dataset</span>
-                          </div> &lt;certainty</b>
+                          </div>&lt;{{ tag.name }}</b>
                       </div>
                       <div class="block">
                         <div class="attributeList">
@@ -98,7 +98,7 @@
                         </div>
                       </div>
                       <div class="block tag">
-                        <b class="big">&gt;&lt;/certainty&gt;</b>
+                        <b class="big">&gt;&lt;/{{ tag.name }}&gt;</b>
                         <button type="button" class="close onExpanded" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -109,7 +109,8 @@
                     <div class="d-flex flex-row">
                       <div class="d-block">
                         <p>
-                          <b class="big">{{ tag.count }} out of {{ document_count }} documents have this tag</b><br/>
+                          <b class="big">{{ tag.n_docs }} out of {{ document_count }} documents have this tag</b><br/>
+                          <b class="big">This tag is mainly found in the {{ tag.location }}</b><br/>
                           There is a total of {{ tag.attributes|length }} distinct attributes <br/>for this tag in the dataset <br/>
                           <br/>
                         </p>
