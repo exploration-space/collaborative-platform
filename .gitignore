@@ -39,3 +39,5 @@ celerybeat-schedule
 #uploaded files
 
 *uploaded_files/
+
+*.xml

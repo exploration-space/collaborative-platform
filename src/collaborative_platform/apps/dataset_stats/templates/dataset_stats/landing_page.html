@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'dataset_stats/css/main.css' %}">
+{% endblock %}
+
+{% block submenu %}
+<ul class="submenu__list">
+  <li class="submenu__item">
+    <a href="{% url 'projects:project' project_id %}" class="submenu__link">{{ title }}</a>
+  </li>
+  <li class="submenu__item">
+    <a href="{% url 'projects:files' project_id %}" class="submenu__link">Files</a>
+  </li>
+  <li class="submenu__item">
+    <a href="{% url 'overview:main' project_id %}" class="submenu__link">Overview</a>
+  </li>
+  <li class="submenu__item submenu__item--active">
+    <a href="{% url 'dataset_stats:main' project_id %}" class="submenu__link">Stats</a>
+  </li>
+  <li class="submenu__item">
+    <a href="{% url 'projects:project_settings' project_id %}" class="submenu__link">Settings</a>
+  </li>
+</ul>
+{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+<div class="submenu">
+  <div class="container">
+    <ul class="submenu__list d-flex">
+      <li class="submenu__item">
+        <a href="{% url 'projects:project' project_id %}" class="submenu__link">{{ title }}</a>
+      </li>
+      <li class="submenu__item">
+        <a href="{% url 'projects:files' project_id %}" class="submenu__link">Files</a>
+      </li>
+      <li class="submenu__item">
+        <a href="{% url 'overview:main' project_id %}" class="submenu__link">Overview</a>
+      </li>
+      <li class="submenu__item submenu__item--active">
+        <a href="{% url 'dataset_stats:main' project_id %}" class="submenu__link">Stats</a>
+      </li>
+      <li class="submenu__item">
+        <a href="{% url 'projects:project_settings' project_id %}" class="submenu__link">Settings</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="dataset-stats" class="container project">
+  <div class="d-flex flex-column-reverse flex-md-row project__header">
+    <div class=" project__content">
+      <h1>{{ title }}</h1>
+      <b>Entity and attributes coverage of TEI annotations in the current dataset.</b>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="box">
+        <div class="box__header">
+          <h3 class="box__text--title">Entity and attribute coverage of the dataset</h3>
+          <div class="d-flex align-items-center">
+            <strong>Loading...</strong>
+            <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="box__content">
+          <div class="jumbotron">
+            <h1 class="display-4">This may take a while . . .</h1>
+            <p class="lead">Currently processing all documents in the <b><i>{{ title }}</b></i> project.</p>
+            <hr class="my-4">
+            <p>Here are some quick statistics about your documents:</p>
+            <div class="row">
+              <div class="col-4">
+                <p>
+                  Project created on <b>{{ created }}</b>.<br/>
+                  Project's current state has <b>{{ document_count }}</b> documents.<br/>
+                  <b>{{ changes_count }}</b> changes since its creation.<br/>
+                  Last modification by <b>{{ last_edited_by }}</b> on <b>{{ last_edited_when }}</b>.
+                </p>
+              </div>
+              <div class="col-8">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Tags found in the document header</th>
+                      <th scope="col">Tags found in the document body</th>
+                      <th scope="col">Mean attribute count</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in stats %}
+                      <tr>
+                        <th scope="row">{{ row.tag }}</th>
+                        <td>{{ row.header }}</td>
+                        <td>{{ row.body }}</td>
+                        <td>{{ row.attr_count|floatformat:"0" }}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="react-root"></div>
+
+{% if DEVELOPMENT is True %}
+  <script type="text/javascript" src="http://localhost:3000/main.js"></script>
+{% else %}
+  <script type="text/javascript" src="{% static 'dataset_stats/js/main.js' %}"></script>
+  <script type="text/javascript" src="{% static 'dataset_stats/js/main.js.map' %}"></script>
+{% endif %}
+
+<script type="text/javascript">
+window.onload = function() {
+var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+    }
+});
+window.location.assign("{% url 'dataset_stats:main' project_id %}");
+}
+</script>
+{% endblock %}
