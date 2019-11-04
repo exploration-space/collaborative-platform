@@ -37,7 +37,7 @@ services:
       - .:/code
     ports:
       - 8000:8000
-      - 3000:3000
+      - 8888:8888
     depends_on:
       - postgres
       - elasticsearch
