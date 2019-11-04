@@ -56,3 +56,5 @@ jupyter-core==4.5.0
 django-extensions==2.2.1
 
 # For NLP
+pandas
+tqdm
