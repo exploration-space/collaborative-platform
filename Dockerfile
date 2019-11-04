@@ -4,7 +4,6 @@ RUN mkdir /code
 WORKDIR /code
 COPY requirements.txt /code/
 RUN pip install -r requirements.txt
-RUN python -m spacy download en_core_web_md
 COPY . /code/
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
