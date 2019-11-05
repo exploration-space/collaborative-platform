@@ -71,7 +71,7 @@
                       <div class="block tag">
                         <b class="big"><div class="badge badge-primary badge-pill">{{ tag.count }} 
                           <span class="onExpanded">tags found in the dataset</span>
-                          </div>&lt;{{ tag.name }}</b>
+                          </div>&lt;{{ tag.short_name }}</b>
                       </div>
                       <div class="block">
                         <div class="attributeList">
@@ -88,7 +88,7 @@
                               <span class="attributeSummary">
                                 <b>{{ attr.name }}=</b>
                                 <div class="attributeStats rounded">
-                                  <span>{{ attr.values|length }} distinct values</span>
+                                  <span>{{ attr.distinct_values }} distinct values</span>
                                   <span class="big">{{ attr.top_perc }}% with value '{{ attr.top_value }}'</span>
                                   <span class="">{{ attr.coverage }}% tags have it</span>
                                 </div>
@@ -98,7 +98,7 @@
                         </div>
                       </div>
                       <div class="block tag">
-                        <b class="big">&gt;&lt;/{{ tag.name }}&gt;</b>
+                        <b class="big">&gt;&lt;/{{ tag.short_name }}&gt;</b>
                         <button type="button" class="close onExpanded" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -124,20 +124,22 @@
                   </li>
                   {% for attr in tag.attributes %}
                     <li class="list-group-item onExpanded">
-                      <div class="d-flex flex-row">
-                        <div class="d-block">
+                      <div class="row">
+                        <div class="col-3">
                           <h4>{{ attr.name }}</h4>
                           <p>
-                            {{ attr.values|length }} distinct values <br/>
-                            {{ attr.top_perc }}% with value '{{ attr.top_value }}' <br/>
+                            {{ attr.distinct_values }} distinct values <br/>
+                            <span title="{{ attr.top_value }}">{{ attr.top_perc }}% with value '{{ attr.top_value |truncatechars:40}}' <br/>
                             {{ attr.coverage }}% tags have it<br/>
                           </p>
                         </div>
+                        <div class="col-auto">
                           <canvas 
                               id="{{ tag.name }}-{{ attr.name }}" 
-                              data="{{ attr.values }}" 
+                              data='{"data":{{ attr.values_json }}}' 
                               class="chartContainer pl-5" 
                               width=400>
+                        </div>
                       </div>
                     </li>
                   {% endfor %}
