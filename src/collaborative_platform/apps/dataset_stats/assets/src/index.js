@@ -20,8 +20,10 @@ Array
 
 function renderChart(node){
 	const id = node.id;
-	const data_str = node.attributes['data'].value.replace(/'/g, '"');
-	const data = JSON.parse(data_str);
+	const data_str = node.attributes['data'].value,
+		  data = JSON.parse(data_str)['data'];
+
+	console.log(data)
 
 	node.setAttribute('height', 100 + (25*data.length))
 
@@ -31,7 +33,7 @@ function renderChart(node){
 	    data: {
 	        labels: data.map(x=>x[0]),
 	        datasets: [{
-	            label: '# of Votes',
+	            label: '# of ocurrencies',
 	            data: data.map(x=>x[1]),
 	            borderWidth: 1
 	        }]

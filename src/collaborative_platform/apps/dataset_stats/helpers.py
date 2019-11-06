@@ -3,6 +3,7 @@ from typing import Iterable, Dict
 import pandas as pd
 from lxml import etree as et
 from tqdm import tqdm
+import json
 
 NAMESPACES = {'tei': 'http://www.tei-c.org/ns/1.0', 'xml': 'http://www.w3.org/XML/1998/namespace'}
 
@@ -106,13 +107,19 @@ def create_summary_for_document_collection(doc_gen: Iterable[str])->pd.DataFrame
 
     return stats_df
 
-def get_stats(stats_df:pd.DataFrame)->Dict:
+def get_stats(stats_df):
     n_docs = len(stats_df['document'].unique())
     tag_g = stats_df.groupby('tag')
     tag_stats = tag_g.describe()
+    attr_value_counts = stats_df \
+            .loc[:,['tag','attr_name', 'attr_value']] \
+            .groupby(['tag','attr_name']) \
+            .attr_value \
+            .value_counts()
     
     stats = ({
-        'name': row[0].split('}')[1] if '}' in row[0] else row[0],
+        'name': row[0],
+        'short_name': row[0].split('}')[1] if '}' in row[0] else row[0],
         'count': row[1]['tag_id']['unique'],
         'coverage': 100*row[1]['document']['unique'] / n_docs,
         'n_docs': row[1]['document']['unique'],
@@ -121,9 +128,10 @@ def get_stats(stats_df:pd.DataFrame)->Dict:
                 'name': attr[0].split('}')[1] if '}' in attr[0] else attr[0],
                 'top_perc': round(100*attr[1]['attr_value']['freq']/attr[1]['attr_value']['count']),
                 'top_value': attr[1]['attr_value']['top'],
-                'coverage': round(100*attr[1]['document']['count']/row[1]['tag_id']['unique']),
-                'values': []
+                'distinct_values': attr_value_counts[row[0]][attr[0]].count(),
+                'coverage': 100*attr[1]['document']['count']/row[1]['tag_id']['unique'],
+                'values_json': json.dumps(list(attr_value_counts[row[0]][attr[0]].head().items()))
             }for attr in tag_g.get_group(row[0]).groupby('attr_name').describe().iterrows())
     } for row in tag_stats.iterrows())
-    
+        
     return stats
