@@ -121,15 +121,15 @@ def get_stats(stats_df):
         'name': row[0],
         'short_name': row[0].split('}')[1] if '}' in row[0] else row[0],
         'count': row[1]['tag_id']['unique'],
-        'coverage': 100*row[1]['document']['unique'] / n_docs,
+        'coverage': round(100*row[1]['document']['unique'] / n_docs, 2),
         'n_docs': row[1]['document']['unique'],
         'location': row[1]['location']['top'],
         'attributes': tuple({
                 'name': attr[0].split('}')[1] if '}' in attr[0] else attr[0],
-                'top_perc': round(100*attr[1]['attr_value']['freq']/attr[1]['attr_value']['count']),
+                'top_perc': round(round(100*attr[1]['attr_value']['freq']/attr[1]['attr_value']['count']),2),
                 'top_value': attr[1]['attr_value']['top'],
                 'distinct_values': attr_value_counts[row[0]][attr[0]].count(),
-                'coverage': 100*attr[1]['document']['count']/row[1]['tag_id']['unique'],
+                'coverage': round(100*attr[1]['document']['count']/row[1]['tag_id']['unique'], 2),
                 'values_json': json.dumps(list(attr_value_counts[row[0]][attr[0]].head().items()))
             }for attr in tag_g.get_group(row[0]).groupby('attr_name').describe().iterrows())
     } for row in tag_stats.iterrows())
