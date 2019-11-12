@@ -117,7 +117,13 @@
                       </div>
                       <div id="chartContainer" class="d-block pl-5">
                         <p>
-                          <b></b>
+                          <b>
+                            {% if tag.coverage < 20 %}
+                            <div class="alert alert-danger" role="alert">
+                              Too few documents ({{ tag.coverage }}%) have this entity. Analysis based on this tag can leave information out.
+                            </div>
+                            {% endif %}
+                          </b>
                         </p>
                       </div>
                     </div>
@@ -139,6 +145,26 @@
                               data='{"data":{{ attr.values_json }}}' 
                               class="chartContainer pl-5" 
                               width=400>
+                        </div>
+                        <div class="col-3">
+                          {% if attr.coverage < 34 %}
+                            <div class="alert alert-danger" role="alert">
+                              Only a third or less of the entities have this attribute. Analysis based on this attribute can leave information out.
+                            </div>
+                          {% endif %}
+                          {% if attr.distinct_values == 1 %}
+                            <div class="alert alert-danger" role="alert">
+                              This attribute takes only one different value. Analysis based on this attribute will not provide extra information.
+                            </div>
+                          {% elif attr.distinct_values == 2 and attr.top_perc > 60 %}
+                            <div class="alert alert-danger" role="alert">
+                              This attribute takes only two different values and one is over-representated. Analysis based on this attribute can be biased.
+                            </div>
+                          {% elif attr.distinct_values > 2 and attr.top_perc > 50 %}
+                            <div class="alert alert-danger" role="alert">
+                              This attribute has an imbalanced value distribution. Analysis based on this attribute can be biased.
+                            </div>
+                          {% endif %}
                         </div>
                       </div>
                     </li>
